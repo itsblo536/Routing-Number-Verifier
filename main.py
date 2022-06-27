@@ -34,11 +34,13 @@ try:
     #Non-numerical routing number will result in a no such element exception
     search_results = driver.find_element(By.ID, "results_table_info")
     results = search_results.text
+    #Case where routing number results in no entries
     if results == "Showing 0 to 0 of 0 entries":
         print("Invalid routing number.")
     else:
         result_table = driver.find_element(By.ID, "results_table")
         routing_num_info = result_table.find_elements(By.TAG_NAME, "td")
+        #Prints routing number with corresponding bank name, state, and city
         for info in routing_num_info:
             print(info.text)
 #Checks for case where user inputs a non-numerical routing number
